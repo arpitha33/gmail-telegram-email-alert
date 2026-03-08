@@ -1,0 +1,80 @@
+{
+  "name": "EMAIL ALERT",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "type": "n8n-nodes-base.gmailTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a7ccd619-1116-479f-9fb5-276a76a740f0",
+      "name": "Gmail Trigger",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "kr7FSanr97L02u3M",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "5261230703",
+        "text": "=📩 New Email Received!  From: {{$json[\"From\"]}} Subject: {{$json[\"Subject\"]}}  ",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        192,
+        0
+      ],
+      "id": "0c7e9206-5d3e-4f38-94e9-a873cae3a28f",
+      "name": "Send a text message",
+      "webhookId": "a5a1a34a-d072-403a-a65f-81fc5e7394f9",
+      "credentials": {
+        "telegramApi": {
+          "id": "DAzjnA51ckeAP0t8",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "fd16992b-62ec-4d77-bb62-b8bfb846a627",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8f835b805cb00c3c938e20e86e0c0580dc8882b3df68547b72e5aba24e225516"
+  },
+  "id": "4Jte0oB10ohUBt5D",
+  "tags": []
+}
